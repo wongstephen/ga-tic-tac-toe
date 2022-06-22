@@ -98,3 +98,5 @@ const tileAction = (event) => {
 (function () {
   createSquare();
 })();
+
+//test

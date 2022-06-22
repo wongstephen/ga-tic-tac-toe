@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;700&family=Slackey&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-* {
-  /* outline: 1px solid magenta; */
-}
+
 body {
   background: rgb(38,27,220);
   background: linear-gradient(322deg, rgba(38,27,220,1) 0%, rgba(0,212,255,1) 100%);
