@@ -10,7 +10,22 @@
 </head>
 <body>
   <p class="error">You can't do that</p>
-  <div class="end-screen"></div>
+  <div class="end-screen">
+    <div class="round"></div>
+    <div class="winner-sprite2"></div>
+    <div class="winner-text"></div>
+  </div>
+
+  <div class="scoreContainer">
+    <h2>Score</h2>
+    <ul>
+      <li>X Win:<span id="xScore">0</span></li>
+      <li>O Win:<span id="yScore">0</span></li>
+      <li><button id="resetBtn">RESET GAME</button></li>
+      <!-- <li>TIE:<span id="tieScore">0</span></li> -->
+    </ul>
+  </div>
+
   <div id="root">  
     <h1>The Rad<br />Tic-Tac-Toe<br />Game</h1>
     <div id="game"></div>

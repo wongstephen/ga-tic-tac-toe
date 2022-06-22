@@ -1,9 +1,10 @@
 const game = document.querySelector("#game");
 let playerTracker = 0; // even O odd X
-const score = { x: 0, y: 0 };
+const score = { x: 0, o: 0, tie: 0 };
 const xSprite = '<i class="fa-solid fa-xmark"></i>';
 const oSprite = '<i class="fa-solid fa-o"></i>';
 let trackRound = 0;
+const spaceId = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
 
 const winConditions = [
   ["a", "b", "c"],
@@ -17,17 +18,15 @@ const winConditions = [
 ];
 
 const createSquare = () => {
-  const spaceId = ["a", "b", "c", "d", "e", "f", "g", "h", "i"].forEach(
-    (id) => {
-      const div = document.createElement("div");
-      div.classList.add("square");
-      div.setAttribute("id", id);
-      div.setAttribute("data-tile", "empty");
-      tileAction(div);
-      // div.innerText = id; //THIS TELLS YOU WHAT CELL IS LABELED WHAT
-      game.appendChild(div);
-    }
-  );
+  spaceId.forEach((id) => {
+    const div = document.createElement("div");
+    div.classList.add("square");
+    div.setAttribute("id", id);
+    div.setAttribute("data-tile", "empty");
+    tileAction(div);
+    // div.innerText = id; //THIS TELLS YOU WHAT CELL IS LABELED WHAT
+    game.appendChild(div);
+  });
 };
 
 const tileLogic = (event) => {
@@ -43,17 +42,53 @@ const tileLogic = (event) => {
   }
 };
 
-const endScreen = (sprite) => {
+const roundTracker = () => {
+  const roundContainer = document.querySelector(".round");
+  return (roundContainer.innerHTML = "Round " + trackRound);
+};
+
+const nextRound = () => {
+  playerTracker = 0;
+
+  //empty squares
+  spaceId.forEach((id) => {
+    const div = document.getElementById(id);
+    div.setAttribute("data-tile", "empty");
+    div.innerHTML = "";
+    // div.innerText = id; //THIS TELLS YOU WHAT CELL IS LABELED WHAT
+  });
+  //remove tie or win screen
   const endScreenDom = document.querySelector(".end-screen");
-  const div1 = document.createElement("div");
-  div1.innerHTML = sprite;
-  div1.classList.add("winSprite");
-  endScreenDom.appendChild(div1);
-  const div2 = document.createElement("div");
-  div2.innerHTML = "WINNER!";
-  endScreenDom.appendChild(div2);
+  endScreenDom.style.display = "none";
+  //click anywhere
+};
+
+const endScreen = (sprite, result = "Winner!") => {
+  const endScreenDom = document.querySelector(".end-screen");
+  const winnerText = document.querySelector(".winner-text");
+  const winnerSprite = document.querySelector(".winner-sprite2");
+  const round = document.querySelector(".round");
+
+  round.innerHTML = roundTracker();
+
+  winnerSprite.innerHTML = sprite;
+  winnerSprite.classList.add("winSprite");
+
+  winnerText.innerHTML = result;
   endScreenDom.style.display = "flex";
-  console.log(endScreenDom);
+
+  endScreenDom.addEventListener("click", function () {
+    nextRound();
+  });
+};
+
+const updateScore = () => {
+  const xScore = document.getElementById("xScore");
+  const yScore = document.getElementById("yScore");
+  const tieScore = document.getElementById("tieScore");
+  xScore.innerText = score.x;
+  yScore.innerText = score.o;
+  // tieScore.innerText = score.tie;
 };
 
 const winLogic = () => {
@@ -63,15 +98,19 @@ const winLogic = () => {
     });
     if (winArr.every((mark) => mark === "markedX")) {
       trackRound++;
+      score.x += 1;
+      updateScore();
       endScreen(xSprite);
     } else if (winArr.every((mark) => mark === "markedO")) {
+      score.o += 1;
       trackRound++;
+      updateScore();
       endScreen(oSprite);
     } else if (playerTracker === 9) {
-      const endScreenDom = document.querySelector(".end-screen");
-      endScreenDom.innerHTML = "TIE!";
-      endScreenDom.style.display = "flex";
-      console.log(endScreenDom);
+      console.log(score.tie);
+      // score.tie += 1;
+      // updateScore();
+      endScreen("TIE!", null);
     }
   });
 };
