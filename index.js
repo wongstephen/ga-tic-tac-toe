@@ -134,8 +134,15 @@ const tileAction = (event) => {
   });
 };
 
+//Game reset
+const resetBtn = document.querySelector("#resetBtn");
+resetBtn.addEventListener("click", function () {
+  Object.keys(score).forEach((e) => {
+    console.log((score[e] = 0));
+  });
+  updateScore();
+});
+
 (function () {
   createSquare();
 })();
-
-//test
