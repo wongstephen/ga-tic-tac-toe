@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;700&family=Slackey&display=swap');
+* {
+  /* outline: 1px solid magenta; */
+}
+body {
+  background: rgb(38,27,220);
+  background: linear-gradient(322deg, rgba(38,27,220,1) 0%, rgba(0,212,255,1) 100%);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  /* box-sizing: border-box; */
+}
+#root {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  max-height: 600px;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+h1 {
+  color: white;
+  font-family: 'Slackey', cursive;
+  font-size: 3rem;
+  text-align: center;
+  width: 100%;
+  text-shadow: 2px 2px 10px #000000;
+
+}
+#game {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* outline: 1px solid magenta; */
+  width: 300px;
+}
+.square {
+  align-items: center;
+  /* background-color: rgba(255,255,255,.02); */
+  border-radius: 15;  
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  /* outline: 1px solid magenta; */
+  width: 100px;
+}
+#a, #b, #c, #d, #e, #f {
+  border-bottom: 6px solid white
+}
+#b, #c, #e, #f, #h, #i {
+  border-left: 6px solid white
+}
+
+.fa-solid {
+  color: white;
+  font-size: 4rem;
+}
