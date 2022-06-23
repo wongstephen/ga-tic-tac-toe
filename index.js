@@ -137,6 +137,7 @@ const tileAction = (event) => {
 //Game reset
 const resetBtn = document.querySelector("#resetBtn");
 resetBtn.addEventListener("click", function () {
+  trackRound = 0;
   Object.keys(score).forEach((e) => {
     console.log((score[e] = 0));
   });
@@ -145,4 +146,4 @@ resetBtn.addEventListener("click", function () {
 
 (function () {
   createSquare();
-})();
+})(); //IIFE not really necessary, but wanted to implement it.
